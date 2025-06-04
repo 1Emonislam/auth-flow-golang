@@ -1,0 +1,702 @@
+{
+  "info": {
+    "_postman_id": "your-postman-id",
+    "name": "Manty Pay API",
+    "description": "API collection for Manty Pay payment processing system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"your_password\",\n    \"company_name\": \"Your Company\",\n    \"company_address\": \"Company Address\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/signup",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Sign In",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"your_password\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/signin",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "signin"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Password Reset",
+      "item": [
+        {
+          "name": "Request Password Reset",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"user@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/request-password-reset",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "request-password-reset"]
+            }
+          }
+        },
+        {
+          "name": "Verify Reset Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"reset_token_here\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/verify-reset-token",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "verify-reset-token"]
+            }
+          }
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"reset_token_here\",\n    \"new_password\": \"new_password_here\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/reset-password-with-token",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "reset-password-with-token"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Email Verification",
+      "item": [
+        {
+          "name": "Verify Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"verification_token_here\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/verify-email",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "verify-email"]
+            }
+          }
+        },
+        {
+          "name": "Resend Verification Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"user@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/resend-verification-email",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "resend-verification-email"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2FA",
+      "item": [
+        {
+          "name": "Enable Email 2FA",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/2fa/enable/email",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "2fa", "enable", "email"]
+            }
+          }
+        },
+        {
+          "name": "Enable Authenticator 2FA",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/2fa/enable/authenticator",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "2fa", "enable", "authenticator"]
+            }
+          }
+        },
+        {
+          "name": "Get Authenticator QR Code",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/2fa/authenticator-qr",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "2fa", "authenticator-qr"]
+            }
+          }
+        },
+        {
+          "name": "Verify 2FA",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"code\": \"2fa_code_here\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/2fa/verify",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "2fa", "verify"]
+            }
+          }
+        },
+        {
+          "name": "Send OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/2fa/send-otp",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "2fa", "send-otp"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Create Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"amount\": 0.001,\n    \"currency\": \"BTC\",\n    \"description\": \"Payment description\",\n    \"callback_url\": \"https://your-callback-url.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/payments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "payments"]
+            }
+          }
+        },
+        {
+          "name": "Handle Webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"payment_id\": \"payment_id_here\",\n    \"status\": \"completed\",\n    \"transaction_hash\": \"tx_hash_here\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/webhook",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "webhook"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Company",
+      "item": [
+        {
+          "name": "Update Company",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Updated Company Name\",\n    \"address\": \"Updated Company Address\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/company/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "company", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "company_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payout Wallets",
+      "item": [
+        {
+          "name": "Create Payout Wallet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"My Payout Wallet\",\n    \"address\": \"bitcoin_address_here\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/payout-wallets",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "payout-wallets"]
+            }
+          }
+        },
+        {
+          "name": "Get User Payout Wallets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/payout-wallets",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "payout-wallets"]
+            }
+          }
+        },
+        {
+          "name": "Get Payout Wallet",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/payout-wallets/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "payout-wallets", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "wallet_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Payout Wallet",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Updated Wallet Name\",\n    \"address\": \"updated_bitcoin_address\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/payout-wallets/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "payout-wallets", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "wallet_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Payout Wallet",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/payout-wallets/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "payout-wallets", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "wallet_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Create Transaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"wallet_id\": \"wallet_id_here\",\n    \"amount\": 0.001,\n    \"description\": \"Transaction description\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/transactions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "transactions"]
+            }
+          }
+        },
+        {
+          "name": "Get Transaction",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/transactions/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "transactions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "transaction_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Wallet Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/wallets/:wallet_id/transactions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "wallets", ":wallet_id", "transactions"],
+              "variable": [
+                {
+                  "key": "wallet_id",
+                  "value": "wallet_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/transactions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "transactions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "API Keys",
+      "item": [
+        {
+          "name": "Generate API Key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"My API Key\",\n    \"permissions\": [\"read\", \"write\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/api-keys",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "api-keys"]
+            }
+          }
+        },
+        {
+          "name": "Get User API Keys",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/api-keys",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "api-keys"]
+            }
+          }
+        },
+        {
+          "name": "Set Default Key",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/api-keys/:id/default",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "api-keys", ":id", "default"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "api_key_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete API Key",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/api-keys/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "api-keys", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "api_key_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "auth_token",
+      "value": "your_auth_token_here"
+    }
+  ]
+}
